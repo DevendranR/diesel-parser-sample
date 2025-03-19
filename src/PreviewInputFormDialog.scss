@@ -1,0 +1,51 @@
+/*
+ Licensed Materials - Property of IBM
+
+ (C) Copyright IBM Corporation 2023. All Rights Reserved.
+ US Government Users Restricted Rights- Use, duplication or disclosure
+ restricted by GSA ADP Schedule Contract with IBM Corp.
+*/
+
+@use 'carbon-components/scss/globals/scss/_vars.scss' as carbon_vars;
+
+
+
+#PreviewInputFormDialog {
+    display: flex;
+
+    .clearValuesButton {
+        display: flex;
+        margin-left: auto;
+        margin-top: carbon_vars.$spacing-05;
+    }
+
+    .bx--modal-content {
+        min-height: 25vh;
+    }
+
+    .diesel-json-editor {
+        .prop-name-row {
+          margin-top: carbon_vars.$spacing-03;
+        }
+
+        .diesel-json-editor-scrollpane {
+            position: relative;
+            overflow: unset;
+        }
+    
+        .prop-name {
+            margin-left: carbon_vars.$spacing-05;
+        }
+
+        .prop-menu {
+          .bx--assistive-text {
+            display: none;
+          }
+        }
+    }
+}
+
+.dieselContainer {
+    @import "@diesel-parser/json-form/dist/JsonEditor";
+    padding-bottom: carbon_vars.$spacing-07;
+}
