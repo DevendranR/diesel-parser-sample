@@ -8,9 +8,10 @@
 
 import * as JsonForm from "@diesel-parser/json-form";
 
+import { useFlowEditorTranslation } from "@flowEditor/nls/flowEditorI18n";
 import { Modal } from "carbon-components-react";
 import React from "react";
-import { TextInputRenderer } from "./TextInputRenderer";
+import { TextInputRenderer } from "../CustomRenderers/TextInputRenderer/TextInputRenderer";
 import "./PreviewInputFormDialog.scss";
 
 interface PreviewInputFormDialogProps {
@@ -23,6 +24,7 @@ interface PreviewInputFormDialogProps {
 }
 
 const PreviewInputFormDialog = (props: PreviewInputFormDialogProps) => {
+    const { t } = useFlowEditorTranslation();
     
     const customRenderer = new JsonForm.RendererFactory();
     customRenderer.addRenderer("TextAreaRenderer", TextInputRenderer);
@@ -56,18 +58,17 @@ const PreviewInputFormDialog = (props: PreviewInputFormDialogProps) => {
       "Variable19": ""
     }`;
   
-    
 
 
         return (
             
                 <Modal
-                    open={props.open}
                     danger={false}
-                    modalHeading={"newInstance"}
-                    primaryButtonText={"run"}
-                    secondaryButtonText={"cancel"}
+                    modalHeading={t("newInstance")}
+                    primaryButtonText={t("run")}
+                    secondaryButtonText={t("cancel")}
                     id="PreviewInputFormDialog"
+                    
                 >
                     <div className="dieselContainer">
                         {
