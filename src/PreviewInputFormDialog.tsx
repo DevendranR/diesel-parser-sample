@@ -64,9 +64,9 @@ const PreviewInputFormDialog = (props: PreviewInputFormDialogProps) => {
             
                 <Modal
                     danger={false}
-                    modalHeading={t("newInstance")}
-                    primaryButtonText={t("run")}
-                    secondaryButtonText={t("cancel")}
+                    modalHeading={("newInstance")}
+                    primaryButtonText={("run")}
+                    secondaryButtonText={("cancel")}
                     id="PreviewInputFormDialog"
                     
                 >
