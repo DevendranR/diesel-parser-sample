@@ -2,10 +2,12 @@ import './App.css';
 import PreviewInputFormDialog from './PreviewInputFormDialog';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="bx--grid">
+      <div className="bx--row">
+        <div className="bx--col">
         <PreviewInputFormDialog></PreviewInputFormDialog>
-      </header>
+        </div>
+      </div>
     </div>
   );
 }
