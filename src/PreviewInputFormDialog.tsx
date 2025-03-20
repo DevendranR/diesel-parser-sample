@@ -7,11 +7,9 @@
 */
 
 import * as JsonForm from "@diesel-parser/json-form";
-
-import { useFlowEditorTranslation } from "@flowEditor/nls/flowEditorI18n";
+import { MenuOptions } from "@diesel-parser/json-form/dist/RenderOptions";
 import { Modal } from "carbon-components-react";
-import React from "react";
-import { TextInputRenderer } from "../CustomRenderers/TextInputRenderer/TextInputRenderer";
+import { TextInputRenderer } from "./TextInputRenderer";
 import "./PreviewInputFormDialog.scss";
 
 interface PreviewInputFormDialogProps {
@@ -24,7 +22,6 @@ interface PreviewInputFormDialogProps {
 }
 
 const PreviewInputFormDialog = (props: PreviewInputFormDialogProps) => {
-    const { t } = useFlowEditorTranslation();
     
     const customRenderer = new JsonForm.RendererFactory();
     customRenderer.addRenderer("TextAreaRenderer", TextInputRenderer);
@@ -40,7 +37,12 @@ const PreviewInputFormDialog = (props: PreviewInputFormDialogProps) => {
         "Variable16": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
         "Variable17": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
         "Variable18": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
-        "Variable19": {"type": ["string", "null"], "renderer": "TextAreaRenderer"}
+        "Variable19": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
+        "Variable25": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
+        "Variable26": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
+        "Variable27": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
+        "Variable28": {"type": ["string", "null"], "renderer": "TextAreaRenderer"},
+        "Variable29": {"type": ["string", "null"], "renderer": "TextAreaRenderer"}
       },
       "definitions": {}
     }`;
@@ -55,22 +57,27 @@ const PreviewInputFormDialog = (props: PreviewInputFormDialogProps) => {
       "Variable16": "",
       "Variable17": "",
       "Variable18": "",
-      "Variable19": ""
+      "Variable19": "",
+      "Variable25": "",
+      "Variable26": "",
+      "Variable27": "",
+      "Variable28": "",
+      "Variable29": ""
     }`;
   
 
-
         return (
             
-                <Modal
-                    danger={false}
-                    modalHeading={("newInstance")}
-                    primaryButtonText={("run")}
-                    secondaryButtonText={("cancel")}
-                    id="PreviewInputFormDialog"
-                    
-                >
-                    <div className="dieselContainer">
+          
+          <Modal
+          open={props.open}
+          danger={false}
+          modalHeading={("newInstance")}
+          primaryButtonText={("run")}
+          secondaryButtonText={("cancel")}
+          id="PreviewInputFormDialog"
+      >
+         <div className="dieselContainer">
                         {
                             JsonForm.JsonEditor({
                                 schema: JsonForm.parseJsonValue(jsonFormSchema1).toMaybe(),
@@ -79,10 +86,19 @@ const PreviewInputFormDialog = (props: PreviewInputFormDialogProps) => {
                                 onChange: (value) => { },
                                 strictMode: false,
                                 rendererFactory: customRenderer,
-                                debounceMs: 10
+                                debounceMs: 10,
+                                menuFilter: {
+                                  menuFilters: MenuOptions.CHANGE_TYPE | MenuOptions.MOVE | MenuOptions.PROPOSE
+                                },
+                                renderOptions: {
+                                  hideCollapsiblePanel: true,
+                                  hideDocRoot: true,
+                                  hideMenuTooltip: true
+                                }
                         })}
                     </div>
-                </Modal>
+                    </Modal>
+                
             
         );
 
